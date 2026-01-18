@@ -1,88 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Portion Pro Spoon</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portion Pro Spoon</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<main class="page">
+<header>
+  <h1>Portion Pro Spoon</h1>
+</header>
 
-  <!-- HERO -->
-  <section class="hero fade">
-    <h1>Portion Pro Spoon</h1>
-    <p>Accurate measuring. Cleaner cooking.</p>
-  </section>
+<main>
 
-  <!-- CAROUSEL -->
-  <section class="carousel-wrap rise">
-    <div class="carousel" id="carousel">
-      <img src="https://image2url.com/r2/default/images/1768647034317-2da33fef-d189-4b40-90cf-e88fb9e3909f.jpg">
-      <img src="https://image2url.com/r2/default/images/1768647439321-a4e3ac3e-525b-4240-9a44-d61d6e1bd546.jpg">
-      <img src="https://image2url.com/r2/default/images/1768648202222-8e0691d4-9abc-4ccb-ab81-8ab987a34190.jpg">
+  <section class="carousel-container">
+    <div class="carousel">
+      <img src="https://image2url.com/r2/default/images/1768743117712-9eefc32c-e80a-40ed-a4c3-4148209909f0.jpg" alt="Portion Pro Spoon">
+      <img src="https://image2url.com/r2/default/images/1768742710946-f0044673-0d97-4305-b659-09bae189d612.jpg" alt="Portion Pro Spoon">
+      <img src="https://image2url.com/r2/default/images/1768742576958-e1ca3189-1e1c-404e-9b2d-20151c5d2ef6.jpg" alt="Portion Pro Spoon">
+      <img src="https://image2url.com/r2/default/images/1768742487363-7f8e0131-03ab-492a-983d-0d8c6303904b.jpg" alt="Portion Pro Spoon">
+      <img src="https://image2url.com/r2/default/images/1768743724018-46faa866-2672-4ea8-8575-cb336428f77f.jpg" alt="Peeler Bundle">
     </div>
   </section>
 
-  <!-- FEATURES -->
-  <section class="features rise">
-    <div>±0.1g precision</div>
-    <div>500g capacity</div>
-    <div>LCD display</div>
-    <div>Detachable & washable</div>
+  <section class="product-info">
+    <p class="price">Price: <span id="price">$45</span></p>
+    <input type="text" id="coupon" placeholder="Enter coupon code">
+    <button id="buyBtn">Buy Now</button>
   </section>
-
-  <!-- PRICE -->
-  <section class="price-card rise">
-    <div class="price">
-      <span id="price">$45</span>
-      <small id="priceZar">≈ R850</small>
-    </div>
-
-    <div class="coupon">
-      <input id="couponInput" placeholder="Influencer code">
-      <button onclick="applyCoupon()">Apply</button>
-      <p id="couponMsg"></p>
-    </div>
-  </section>
-
-  <!-- BUNDLE -->
-  <section class="bundle rise">
-    <h3>Bonus Bundle</h3>
-    <p>Includes premium vegetable peeler<br>
-    Courtesy of your influencer</p>
-  </section>
-
-  <!-- BUY -->
-  <button class="buy rise" onclick="openModal()">Buy Now</button>
 
 </main>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-  <div class="modal-box pop">
-    <h2>Complete Your Order</h2>
+<!-- Popup Form -->
+<div id="formPopup" class="form-popup">
+  <form id="orderForm">
+    <h2>Shipping Information</h2>
+    <label>Order ID <span id="orderId"></span></label>
+    <input type="text" id="orderIdInput" name="orderId" readonly required>
 
-    <form action="https://formspree.io/f/mjgggjek" method="POST">
-      <input name="orderID" id="orderID" readonly required>
-      <input name="couponCode" id="couponField" readonly required>
-      <input name="name" placeholder="Full name" required>
-      <input name="email" type="email" placeholder="Email" required>
-      <input name="address" placeholder="Shipping address" required>
+    <label>First Name</label>
+    <input type="text" name="firstName" required>
 
-      <button type="submit">Submit Order</button>
-    </form>
+    <label>Last Name</label>
+    <input type="text" name="lastName" required>
 
-    <p class="note">
-      After submitting, you’ll receive payment instructions.
-    </p>
+    <label>Address</label>
+    <input type="text" name="address" required>
 
-    <button class="close" onclick="closeModal()">Cancel</button>
-  </div>
+    <label>City</label>
+    <input type="text" name="city" required>
+
+    <label>ZIP / Postal Code</label>
+    <input type="text" name="zip" required>
+
+    <label>Country</label>
+    <input type="text" name="country" required>
+
+    <label>Email</label>
+    <input type="email" name="email" required>
+
+    <button type="submit">Proceed to PayPal</button>
+  </form>
 </div>
 
+<script src="script.js"></script>
 </body>
   </html>

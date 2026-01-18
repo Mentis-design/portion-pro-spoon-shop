@@ -1,33 +1,47 @@
-let appliedCoupon = "";
+// Elements
+const buyBtn = document.getElementById('buyBtn');
+const formPopup = document.getElementById('formPopup');
+const orderIdInput = document.getElementById('orderIdInput');
+const couponInput = document.getElementById('coupon');
+const priceDisplay = document.getElementById('price');
+const orderForm = document.getElementById('orderForm');
 
-function applyCoupon() {
-  const code = document.getElementById("couponInput").value.trim();
-  const msg = document.getElementById("couponMsg");
+// Base price in USD
+const basePrice = 45;
+const couponCodes = {
+  "LIMITED23": 23,
+  "INFLUENCER50": 23
+};
 
-  if (!code) {
-    msg.textContent = "Enter influencer code";
-    return;
+// Open form popup and generate unique order ID
+buyBtn.addEventListener('click', () => {
+  formPopup.style.display = 'block';
+  const uniqueId = 'ORD' + Math.floor(Math.random() * 1000000);
+  orderIdInput.value = uniqueId;
+  document.getElementById('orderId').textContent = uniqueId;
+});
+
+// Update price dynamically with coupon
+couponInput.addEventListener('input', () => {
+  const code = couponInput.value.toUpperCase();
+  if(couponCodes[code]){
+    priceDisplay.textContent = `$${couponCodes[code]}`;
+  } else {
+    priceDisplay.textContent = `$${basePrice}`;
+  }
+});
+
+// Handle form submission
+orderForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const formData = new FormData(orderForm);
+  let price = basePrice;
+  const code = couponInput.value.toUpperCase();
+  if(couponCodes[code]){
+    price = couponCodes[code];
   }
 
-  appliedCoupon = code.toUpperCase();
-
-  document.getElementById("price").textContent = "$23";
-  document.getElementById("priceZar").textContent = "≈ R430";
-  msg.textContent = "Discount unlocked";
-}
-
-function openModal() {
-  if (!appliedCoupon) {
-    alert("Please enter an influencer code first.");
-    return;
-  }
-
-  document.getElementById("modal").style.display = "flex";
-  document.getElementById("orderID").value =
-    "ORD-" + Math.random().toString(36).substr(2,9).toUpperCase();
-  document.getElementById("couponField").value = appliedCoupon;
-}
-
-function closeModal() {
-  document.getElementById("modal").style.display = "none";
-                                       }
+  // Build PayPal.me link
+  const paypalLink = `https://www.paypal.me/BuynowPortionprospoo/${price}`;
+  window.location.href = paypalLink;
+});

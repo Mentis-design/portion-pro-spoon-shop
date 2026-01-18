@@ -1,1 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Portion Pro Spoon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
 
+<body>
+
+<main class="page">
+
+  <!-- HERO -->
+  <section class="hero fade">
+    <h1>Portion Pro Spoon</h1>
+    <p>Accurate measuring. Cleaner cooking.</p>
+  </section>
+
+  <!-- CAROUSEL -->
+  <section class="carousel-wrap rise">
+    <div class="carousel" id="carousel">
+      <img src="https://image2url.com/r2/default/images/1768647034317-2da33fef-d189-4b40-90cf-e88fb9e3909f.jpg">
+      <img src="https://image2url.com/r2/default/images/1768647439321-a4e3ac3e-525b-4240-9a44-d61d6e1bd546.jpg">
+      <img src="https://image2url.com/r2/default/images/1768648202222-8e0691d4-9abc-4ccb-ab81-8ab987a34190.jpg">
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features rise">
+    <div>±0.1g precision</div>
+    <div>500g capacity</div>
+    <div>LCD display</div>
+    <div>Detachable & washable</div>
+  </section>
+
+  <!-- PRICE -->
+  <section class="price-card rise">
+    <div class="price">
+      <span id="price">$45</span>
+      <small id="priceZar">≈ R850</small>
+    </div>
+
+    <div class="coupon">
+      <input id="couponInput" placeholder="Influencer code">
+      <button onclick="applyCoupon()">Apply</button>
+      <p id="couponMsg"></p>
+    </div>
+  </section>
+
+  <!-- BUNDLE -->
+  <section class="bundle rise">
+    <h3>Bonus Bundle</h3>
+    <p>Includes premium vegetable peeler<br>
+    Courtesy of your influencer</p>
+  </section>
+
+  <!-- BUY -->
+  <button class="buy rise" onclick="openModal()">Buy Now</button>
+
+</main>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-box pop">
+    <h2>Complete Your Order</h2>
+
+    <form action="https://formspree.io/f/mjgggjek" method="POST">
+      <input name="orderID" id="orderID" readonly required>
+      <input name="couponCode" id="couponField" readonly required>
+      <input name="name" placeholder="Full name" required>
+      <input name="email" type="email" placeholder="Email" required>
+      <input name="address" placeholder="Shipping address" required>
+
+      <button type="submit">Submit Order</button>
+    </form>
+
+    <p class="note">
+      After submitting, you’ll receive payment instructions.
+    </p>
+
+    <button class="close" onclick="closeModal()">Cancel</button>
+  </div>
+</div>
+
+</body>
+  </html>

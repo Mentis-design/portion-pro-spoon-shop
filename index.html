@@ -1,1 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portion Pro Spoon</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --border: #e5e7eb;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ===== PAGE ===== */
+.page {
+  max-width: 420px;
+  margin: auto;
+  padding: 20px;
+  animation: fadeIn 0.8s ease;
+}
+
+/* ===== PRODUCT CARD ===== */
+.card {
+  background: var(--card);
+  border-radius: 28px;
+  padding: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+}
+
+/* ===== IMAGE CAROUSEL ===== */
+.carousel {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  border-radius: 20px;
+}
+
+.carousel img {
+  width: 100%;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+  border-radius: 20px;
+}
+
+/* ===== TEXT ===== */
+h1 {
+  font-size: 22px;
+  margin: 16px 0 6px;
+}
+
+p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ===== PRICE ===== */
+.price {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 16px 0;
+}
+
+.old {
+  font-size: 14px;
+  color: #9ca3af;
+  text-decoration: line-through;
+}
+
+/* ===== COLOR SELECT ===== */
+.colors {
+  display: flex;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.color {
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.color.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ===== BUNDLE ===== */
+.bundle {
+  display: none;
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 14px;
+  background: #eff6ff;
+  font-size: 13px;
+}
+
+/* ===== BUTTON ===== */
+.buy {
+  width: 100%;
+  padding: 16px;
+  margin-top: 18px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ===== MODAL ===== */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  width: 90%;
+  max-width: 420px;
+  border-radius: 24px;
+  padding: 20px;
+  animation: slideUp 0.4s ease;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+  <div class="card">
+
+    <div class="carousel">
+      <img src="https://image2url.com/r2/default/images/1768743117712-9eefc32c-e80a-40ed-a4c3-4148209909f0.jpg">
+      <img src="https://image2url.com/r2/default/images/1768742710946-f0044673-0d97-4305-b659-09bae189d612.jpg">
+      <img src="https://image2url.com/r2/default/images/1768742576958-e1ca3189-1e1ca3189-1e1c-404e-9b2d-20151c5d2ef6.jpg">
+      <img src="https://image2url.com/r2/default/images/1768742487363-7f8e0131-03ab-492a-983d-0d8c6303904b.jpg">
+    </div>
+
+    <h1>Portion Pro Spoon</h1>
+    <p>Precision digital measuring spoon for accurate cooking, baking and nutrition tracking.</p>
+
+    <div class="price">
+      <span id="price">$45</span>
+      <div class="old">$45</div>
+    </div>
+
+    <div class="colors">
+      <div class="color" onclick="selectColor(this)">Dark Green</div>
+      <div class="color" onclick="selectColor(this)">Light Green</div>
+      <div class="color" onclick="selectColor(this)">Black</div>
+    </div>
+
+    <div class="bundle" id="bundle">
+      🎁 Bonus Peeler included — courtesy of your creator
+    </div>
+
+    <button class="buy" onclick="openForm()">Buy Now</button>
+  </div>
+</div>
+
+<!-- FORM MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h3>Shipping Details</h3>
+
+    <form action="https://formspree.io/f/mjgggjek" method="POST" onsubmit="redirectPayPal()">
+      <input type="hidden" name="order_id" id="order_id">
+      <input type="hidden" name="final_price" id="final_price">
+
+      <input required name="name" placeholder="Full Name">
+      <input required name="address" placeholder="Street Address">
+      <input required name="city" placeholder="City">
+      <input required name="country" placeholder="Country">
+      <input required name="email" placeholder="Email">
+      <input name="coupon" placeholder="Coupon (optional)" oninput="applyCoupon(this.value)">
+
+      <button class="buy" type="submit">Complete Order</button>
+    </form>
+  </div>
+</div>
+
+<script>
+let selectedColor = null;
+let price = 45;
+
+document.getElementById("order_id").value =
+  "ORD-" + Math.random().toString(36).substr(2,6).toUpperCase();
+
+function selectColor(el) {
+  document.querySelectorAll('.color').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  selectedColor = el.innerText;
+}
+
+function openForm() {
+  if (!selectedColor) {
+    alert("Please select a color");
+    return;
+  }
+  document.getElementById("modal").style.display = "flex";
+}
+
+function applyCoupon(code) {
+  const bundle = document.getElementById("bundle");
+  if (code === "LIMITED23" || code === "INFLUENCER50") {
+    price = 23;
+    document.getElementById("price").innerText = "$23";
+    bundle.style.display = "block";
+  } else {
+    price = 45;
+    document.getElementById("price").innerText = "$45";
+    bundle.style.display = "none";
+  }
+}
+
+function redirectPayPal() {
+  document.getElementById("final_price").value = price;
+  setTimeout(() => {
+    window.location.href = "https://paypal.me/BuynowPortionprospoo/" + price;
+  }, 600);
+}
+</script>
+
+</body>
+  </html>

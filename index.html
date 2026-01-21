@@ -262,10 +262,22 @@ function openForm() {
 
 function applyCoupon(code) {
   const bundle = document.getElementById("bundle");
+  function applyCoupon(code) {
+  const price = document.getElementById("priceValue");
+  const bundle = document.getElementById("bundle");
+  const status = document.getElementById("couponStatus");
+
+  code = code.trim().toUpperCase();
+
   if (code === "LIMITED23" || code === "INFLUENCER50") {
-    price = 23;
-    document.getElementById("price").innerText = "$23";
-    bundle.style.display = "block";
+    price.textContent = "$29";
+    bundle.classList.add("show");
+    status.style.display = "block";
+  } else {
+    price.textContent = "$45";
+    bundle.classList.remove("show");
+    status.style.display = "none";
+  }
   } else {
     price = 45;
     document.getElementById("price").innerText = "$45";

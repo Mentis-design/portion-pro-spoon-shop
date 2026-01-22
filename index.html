@@ -260,20 +260,67 @@ function openForm() {
   document.getElementById("modal").style.display = "flex";
 }
 
+<script>
+let selectedColor = "";
+let price = 45;
+let couponUsed = "";
+
+document.getElementById("order_id").value =
+  "ORD-" + Math.random().toString(36).substr(2,6).toUpperCase();
+
+/* ===== COLOR SELECT (FORM) ===== */
+function selectColor(color) {
+  document.querySelectorAll(".color-circle").forEach(c => c.classList.remove("active"));
+  document.getElementById("color-" + color).classList.add("active");
+  selectedColor = color;
+  document.getElementById("formColor").value = color;
+}
+
+/* ===== OPEN FORM ===== */
+function openForm() {
+  if (!couponUsed && !selectedColor) {
+    alert("Please select a color");
+    return;
+  }
+  document.getElementById("modal").style.display = "flex";
+}
+
+/* ===== COUPON LOGIC ===== */
 function applyCoupon(code) {
-  const bundle = document.getElementById("bundle");
-  function applyCoupon(code) {
-  const price = document.getElementById("priceValue");
+  code = code.trim().toUpperCase();
+
+  const priceEl = document.getElementById("price");
   const bundle = document.getElementById("bundle");
   const status = document.getElementById("couponStatus");
 
-  code = code.trim().toUpperCase();
-
   if (code === "LIMITED23" || code === "INFLUENCER50") {
-    price.textContent = "$29";
-    bundle.classList.add("show");
+    price = 29;
+    couponUsed = code;
+    priceEl.innerText = "$29";
+
+    bundle.style.display = "block";
+    bundle.classList.add("slide");
+
     status.style.display = "block";
+    document.getElementById("formCoupon").value = code;
   } else {
+    price = 45;
+    couponUsed = "";
+    priceEl.innerText = "$45";
+    bundle.style.display = "none";
+    status.style.display = "none";
+    document.getElementById("formCoupon").value = "";
+  }
+}
+
+/* ===== PAYPAL REDIRECT ===== */
+function redirectPayPal() {
+  document.getElementById("final_price").value = price;
+  setTimeout(() => {
+    window.location.href = "https://paypal.me/BuynowPortionprospoo/" + price;
+  }, 600);
+}
+</script> else {
     price.textContent = "$45";
     bundle.classList.remove("show");
     status.style.display = "none";

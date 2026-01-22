@@ -225,7 +225,25 @@ input, select {
 <div class="modal" id="modal">
   <div class="modal-content">
     <h3>Shipping Details</h3>
+<!-- COLOR SELECTION -->
+<label style="margin-top:12px; display:block; font-weight:600;">Choose Color</label>
 
+<div style="display:flex; gap:14px; margin-top:10px;">
+  <div class="color-circle" id="color-Dark Green"
+       onclick="selectColor('Dark Green')"
+       style="background-image:url('https://image2url.com/r2/default/images/1768743117712-9eefc32c-e80a-40ed-a4c3-4148209909f0.jpg');"></div>
+
+  <div class="color-circle" id="color-Light Green"
+       onclick="selectColor('Light Green')"
+       style="background-image:url('https://image2url.com/r2/default/images/1768742710946-f0044673-0d97-4305-b659-09bae189d612.jpg');"></div>
+
+  <div class="color-circle" id="color-Black"
+       onclick="selectColor('Black')"
+       style="background-image:url('https://image2url.com/r2/default/images/1768742487363-7f8e0131-03ab-492a-983d-0d8c6303904b.jpg');"></div>
+</div>
+
+<input type="hidden" name="color" id="formColor">
+<input type="hidden" name="coupon" id="formCoupon">
     <form action="https://formspree.io/f/mjgggjek" method="POST" onsubmit="redirectPayPal()">
       <input type="hidden" name="order_id" id="order_id">
       <input type="hidden" name="final_price" id="final_price">

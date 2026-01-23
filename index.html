@@ -219,19 +219,11 @@ input, select {
     <div class="bundle" id="bundle">
       🎁 Bonus Peeler included — courtesy of your creator
     </div>
-<!-- COUPON INPUT (PRODUCT PAGE) -->
-<input 
+<!-- COUPON INPUT -->
+<input
   id="couponInput"
-  <div id="couponStatus" style="
-  display:none;
-  margin-top:8px;
-  font-size:13px;
-  color:green;
-  font-weight:600;
-">
-  Coupon Applied ✓
-                            </div>
   placeholder="Have a coupon?"
+  oninput="applyCoupon(this.value)"
   style="
     width:100%;
     padding:12px;
@@ -240,8 +232,20 @@ input, select {
     font-size:14px;
     margin-top:14px;
   "
-  oninput="applyCoupon(this.value)"
 >
+
+<div
+  id="couponStatus"
+  style="
+    display:none;
+    margin-top:8px;
+    font-size:13px;
+    color:#16a34a;
+    font-weight:600;
+  "
+>
+  Coupon Applied ✓
+  </div>
     <button class="buy" onclick="openForm()">Buy Now</button>
   </div>
 </div>

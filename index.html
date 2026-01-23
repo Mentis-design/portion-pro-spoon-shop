@@ -311,16 +311,19 @@ function openForm() {
 }
 
 <script>
-let selectedColor = "";
 let price = 45;
+let selectedColor = "";
 let couponUsed = "";
 
+/* ===== ORDER ID ===== */
 document.getElementById("order_id").value =
   "ORD-" + Math.random().toString(36).substr(2,6).toUpperCase();
 
-/* ===== COLOR SELECT (FORM) ===== */
+/* ===== COLOR SELECT ===== */
 function selectColor(color) {
-  document.querySelectorAll(".color-circle").forEach(c => c.classList.remove("active"));
+  document.querySelectorAll(".color-circle")
+    .forEach(c => c.classList.remove("active"));
+
   document.getElementById("color-" + color).classList.add("active");
   selectedColor = color;
   document.getElementById("formColor").value = color;
@@ -328,7 +331,7 @@ function selectColor(color) {
 
 /* ===== OPEN FORM ===== */
 function openForm() {
-  if (!couponUsed && !selectedColor) {
+  if (!selectedColor) {
     alert("Please select a color");
     return;
   }
@@ -346,19 +349,21 @@ function applyCoupon(code) {
   if (code === "LIMITED23" || code === "INFLUENCER50") {
     price = 29;
     couponUsed = code;
-    priceEl.innerText = "$29";
 
+    priceEl.innerText = "$29";
     bundle.style.display = "block";
     bundle.classList.add("slide");
-
     status.style.display = "block";
+
     document.getElementById("formCoupon").value = code;
   } else {
     price = 45;
     couponUsed = "";
+
     priceEl.innerText = "$45";
     bundle.style.display = "none";
     status.style.display = "none";
+
     document.getElementById("formCoupon").value = "";
   }
 }
@@ -366,26 +371,10 @@ function applyCoupon(code) {
 /* ===== PAYPAL REDIRECT ===== */
 function redirectPayPal() {
   document.getElementById("final_price").value = price;
-  setTimeout(() => {
-    window.location.href = "https://paypal.me/BuynowPortionprospoo/" + price;
-  }, 600);
-}
-</script> else {
-    price.textContent = "$45";
-    bundle.classList.remove("show");
-    status.style.display = "none";
-  }
-  } else {
-    price = 45;
-    document.getElementById("price").innerText = "$45";
-    bundle.style.display = "none";
-  }
-}
 
-function redirectPayPal() {
-  document.getElementById("final_price").value = price;
   setTimeout(() => {
-    window.location.href = "https://paypal.me/BuynowPortionprospoo/" + price;
+    window.location.href =
+      "https://paypal.me/BuynowPortionprospoo/" + price;
   }, 600);
 }
 </script>

@@ -326,7 +326,84 @@ input, select {
   </div>
 </div>
 
+<script>
+/* =========================
+   GLOBAL STATE
+========================= */
+let price = 45;          // default price
+let selectedColor = "";  // chosen color
 
+/* =========================
+   ORDER ID
+========================= */
+document.getElementById("order_id").value =
+  "ORD-" + Math.random().toString(36).substr(2,6).toUpperCase();
+
+/* =========================
+   COLOR SELECTION (FORM)
+========================= */
+function selectColor(color) {
+  selectedColor = color;
+  document.getElementById("formColor").value = color;
+
+  document.querySelectorAll(".color-circle").forEach(c =>
+    c.classList.remove("active")
+  );
+
+  const active = document.getElementById("color-" + color);
+  if (active) active.classList.add("active");
+}
+
+/* =========================
+   COUPON LOGIC
+========================= */
+function applyCoupon(code) {
+  const bundle = document.getElementById("bundle");
+  const status = document.getElementById("couponStatus");
+  const priceEl = document.getElementById("price");
+
+  if (code.trim().toUpperCase() === "INFLUENCER50") {
+    price = 23;
+    priceEl.innerText = "$23";
+
+    bundle.style.display = "block";
+    bundle.classList.add("slide");
+
+    status.style.display = "block";
+    document.getElementById("formCoupon").value = code;
+  } else {
+    price = 45;
+    priceEl.innerText = "$45";
+
+    bundle.style.display = "none";
+    status.style.display = "none";
+    document.getElementById("formCoupon").value = "";
+  }
+}
+
+/* =========================
+   OPEN FORM
+========================= */
+function openForm() {
+  if (!selectedColor) {
+    alert("Please select a color");
+    return;
+  }
+
+  document.getElementById("final_price").value = price;
+  document.getElementById("modal").style.display = "flex";
+}
+
+/* =========================
+   PAYPAL REDIRECT
+========================= */
+function redirectPayPal() {
+  setTimeout(() => {
+    window.location.href =
+      "https://paypal.me/BuynowPortionprospoo/" + price;
+  }, 500);
+}
+  </script>
 
 </body>
   </html>

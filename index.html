@@ -326,58 +326,7 @@ input, select {
   </div>
 </div>
 
-<script>
-let selectedColor = null;
-let price = 45;
 
-document.getElementById("order_id").value =
-  "ORD-" + Math.random().toString(36).substr(2,6).toUpperCase();
-
-function selectColor(el) {
-  document.querySelectorAll('.color').forEach(c => c.classList.remove('active'));
-  el.classList.add('active');
-  selectedColor = el.innerText;
-}
-
-function openForm() {
-  if (!selectedColor) {
-    alert("Please select a color");
-    return;
-  }
-  document.getElementById("modal").style.display = "flex";
-}
-
-<script>
-let price = 23;
-
-function applyCoupon(code) {
-  const bundle = document.getElementById("bundle");
-  const status = document.getElementById("couponStatus");
-  const formCoupon = document.getElementById("formCoupon");
-
-  if (code.trim().toUpperCase() === "INFLUENCER50") {
-    bundle.style.display = "block";
-    status.style.display = "block";
-    formCoupon.value = code;
-  } else {
-    bundle.style.display = "none";
-    status.style.display = "none";
-    formCoupon.value = "";
-  }
-}
-
-function openForm() {
-  document.getElementById("final_price").value = price;
-  document.getElementById("modal").style.display = "flex";
-}
-
-function redirectPayPal() {
-  setTimeout(() => {
-    window.location.href =
-      "https://paypal.me/BuynowPortionprospoo/23";
-  }, 500);
-}
-</script>
 
 </body>
   </html>

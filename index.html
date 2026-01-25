@@ -398,14 +398,19 @@ function redirectPayPal() {
       "https://paypal.me/BuynowPortionprospoo/" + price;
   }, 500);
 }
-  function handleSubmit() {
+function handleSubmit() {
   if (!selectedColor) {
     alert("Please choose a color");
     return false;
   }
 
   document.getElementById("final_price").value = price;
-  redirectPayPal();
+
+  // let Formspree submit first
+  setTimeout(() => {
+    window.location.href = "https://paypal.me/BuynowPortionprospoo/" + price;
+  }, 1200);
+
   return true;
   }
   </script>

@@ -1,4 +1,4 @@
-to<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -383,14 +383,9 @@ function applyCoupon(code) {
    OPEN FORM
 ========================= */
 function openForm() {
-  if (!selectedColor) {
-    alert("Please select a color");
-    return;
-  }
-
   document.getElementById("final_price").value = price;
   document.getElementById("modal").style.display = "flex";
-}
+  }
 
 /* =========================
    PAYPAL REDIRECT

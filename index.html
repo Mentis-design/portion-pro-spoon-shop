@@ -371,21 +371,17 @@ function applyCoupon(code) {
   if (code.trim().toUpperCase() === "INFLUENCER50") {
     price = 23;
     priceEl.innerText = "$23";
-
     bundle.style.display = "block";
-    bundle.classList.add("slide");
-
     status.style.display = "block";
     document.getElementById("formCoupon").value = code;
   } else {
     price = 45;
     priceEl.innerText = "$45";
-
     bundle.style.display = "none";
     status.style.display = "none";
     document.getElementById("formCoupon").value = "";
   }
-}
+  }
 
 /* =========================
    OPEN FORM

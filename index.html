@@ -215,6 +215,25 @@ input, select {
   <div class="old">$45</div>
 </div>
 
+<input
+  id="couponInput"
+  placeholder="Have a coupon?"
+  oninput="applyCoupon(this.value)"
+>
+
+<p id="couponStatus" style="display:none;font-size:13px;color:#16a34a;font-weight:600;margin-top:6px;">
+  Coupon Applied ✓
+</p>
+
+<div id="bundle" class="bundle">
+  <p style="font-weight:600;">🎁 Free Bundle Included</p>
+  <div style="display:flex;gap:10px;margin-top:8px;">
+    <img src="https://image2url.com/r2/default/images/1768743117712-9eefc32c-e80a-40ed-a4c3-4148209909f0.jpg" width="60">
+    <img src="https://image2url.com/r2/default/images/1768742710946-f0044673-0d97-4305-b659-09bae189d612.jpg" width="60">
+    <img src="https://image2url.com/r2/default/images/1768742487363-7f8e0131-03ab-492a-983d-0d8c6303904b.jpg" width="60">
+  </div>
+  </div>
+
 <p
   id="couponStatus"
   style="display:none;font-size:13px;color:#2e7dff;margin-top:6px;"
